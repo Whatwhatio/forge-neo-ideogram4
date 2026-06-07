@@ -1,0 +1,527 @@
+#i4-builder {
+    margin-top: 0.75rem;
+}
+
+#i4-page,
+#i4-page input,
+#i4-page textarea,
+#i4-page select,
+#i4-page button {
+    font-size: 0.8rem !important;
+}
+
+/* Forge Neo's top-level PNG Info tab. */
+#pnginfo_image {
+    width: min(100%, 640px) !important;
+    height: min(38vh, 360px) !important;
+    min-height: 0 !important;
+    margin-right: auto;
+    margin-left: auto;
+    background: var(--background-fill-secondary);
+}
+
+#pnginfo_image .image-container {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+#pnginfo_image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 360px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+}
+
+#i4-main-split {
+    --i4-left-pane-width: 50%;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    align-items: stretch !important;
+}
+
+#i4-left-pane {
+    flex: 0 0 var(--i4-left-pane-width) !important;
+    min-width: 0 !important;
+    padding-right: 0.6rem;
+}
+
+#i4-right-pane {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding-left: 0.6rem;
+}
+
+#i4-divider-slot {
+    position: relative;
+    align-self: stretch;
+    flex: 0 0 8px;
+    width: 8px;
+    min-width: 8px !important;
+    height: auto !important;
+    min-height: 100% !important;
+    padding: 0 !important;
+}
+
+#i4-main-divider {
+    position: absolute;
+    inset: 0;
+    min-height: 20rem;
+    cursor: col-resize;
+    touch-action: none;
+    border-radius: 4px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 3px,
+            var(--border-color-primary) 3px,
+            var(--border-color-primary) 5px,
+            transparent 5px
+        );
+}
+
+#i4-main-divider:hover,
+#i4-main-split.resizing #i4-main-divider {
+    background:
+        linear-gradient(
+            90deg,
+            transparent 2px,
+            var(--primary-500) 2px,
+            var(--primary-500) 6px,
+            transparent 6px
+        );
+}
+
+#i4-main-split.png-info-active #i4-generation-controls,
+#i4-main-split.png-info-active #i4-right-pane,
+#i4-main-split.png-info-active #i4-divider-slot {
+    display: none !important;
+}
+
+#i4-main-split.png-info-active #i4-left-pane {
+    flex-basis: 100% !important;
+    width: 100% !important;
+    padding-right: 0;
+}
+
+#i4-png-info-layout {
+    align-items: stretch;
+    flex-wrap: nowrap !important;
+    gap: 0.75rem;
+}
+
+#i4-png-preview-column,
+#i4-png-json-column {
+    flex: 1 1 50% !important;
+    min-width: 0 !important;
+}
+
+#i4-png-source {
+    width: 100% !important;
+    height: min(42vh, 420px) !important;
+    min-height: 0 !important;
+    background: var(--background-fill-secondary);
+}
+
+#i4-png-source .image-container {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    background: var(--background-fill-secondary) !important;
+}
+
+#i4-png-source img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 420px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+}
+
+#i4-png-json-column textarea {
+    max-height: 420px !important;
+    overflow-y: auto !important;
+}
+
+.i4-page-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0.4rem 0 0.75rem;
+}
+
+.i4-page-toolbar button {
+    padding: 0.5rem 0.8rem;
+}
+
+.i4-page-toolbar span {
+    opacity: 0.72;
+    font-size: 0.9em;
+}
+
+.i4-builder-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.i4-builder-toolbar button {
+    padding: 0.45rem 0.75rem;
+}
+
+.i4-builder-toolbar button.active {
+    border-color: var(--primary-500);
+    background: var(--primary-700);
+    color: white;
+}
+
+.i4-builder-toolbar span {
+    opacity: 0.75;
+    font-size: 0.9em;
+}
+
+.i4-builder-note {
+    margin: 0 0 0.6rem;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--block-border-color);
+    border-radius: var(--input-radius);
+    background: var(--background-fill-primary);
+    color: var(--body-text-color);
+    opacity: 0.9;
+}
+
+.i4-builder-layout {
+    display: grid;
+    grid-template-columns: 520px minmax(240px, 1fr);
+    gap: 0.75rem;
+    align-items: start;
+}
+
+#i4-canvas-wrap {
+    background: #111;
+    border: 1px solid var(--border-color-primary);
+    padding: 8px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 1024px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+#i4-canvas {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+        #181818;
+    background-size: 10% 10%;
+    touch-action: none;
+}
+
+#i4-canvas.previewing {
+    background-color: #000;
+    background-size: 100% 100%, contain;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.i4-region {
+    position: absolute;
+    border: 2px solid #9e9e9e;
+    background: rgba(130, 130, 130, 0.2);
+    cursor: move;
+    user-select: none;
+    overflow: hidden;
+}
+
+.i4-region.text {
+    border-color: #ff304f;
+    background: rgba(255, 48, 79, 0.25);
+}
+
+.i4-region.selected {
+    box-shadow: 0 0 0 2px #fff;
+}
+
+.i4-region > span {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+.i4-region-label {
+    padding: 1.5rem 0.35rem 0.35rem;
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+}
+
+.i4-region > i {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    cursor: nwse-resize;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.i4-region-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.i4-region-editor label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.i4-region-editor textarea,
+.i4-region-editor input,
+.i4-region-editor select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--input-padding);
+    border: var(--input-border-width) solid var(--input-border-color);
+    border-radius: var(--input-radius);
+    background: var(--input-background-fill) !important;
+    color: var(--body-text-color) !important;
+    -webkit-text-fill-color: var(--body-text-color);
+    font-family: var(--font) !important;
+    font-size: 0.8rem !important;
+    line-height: 1.5 !important;
+}
+
+#i4-region-color {
+    min-height: 2.4rem;
+    padding: 0.2rem !important;
+    cursor: pointer;
+}
+
+#i4-region-desc {
+    min-height: calc(9 * 1.5em + 1rem);
+    max-height: calc(9 * 1.5em + 1rem);
+    overflow-y: auto;
+}
+
+.i4-region-editor textarea::placeholder,
+.i4-region-editor input::placeholder {
+    color: var(--input-placeholder-color) !important;
+    opacity: 1;
+}
+
+.i4-region-editor select option {
+    background: var(--input-background-fill);
+    color: var(--body-text-color);
+}
+
+#i4-region-bbox {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0.5rem;
+    border: 1px solid var(--block-border-color);
+    border-radius: var(--input-radius);
+}
+
+#i4-region-bbox legend {
+    padding: 0 0.25rem;
+    font: 0.85rem monospace;
+}
+
+#i4-region-bbox input {
+    min-width: 0;
+    padding-left: 0.45rem;
+    padding-right: 0.25rem;
+    font-family: monospace;
+}
+
+.i4-output-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.45rem;
+}
+
+.i4-output-toolbar button {
+    padding: 0.45rem 0.8rem;
+}
+
+.i4-output-toolbar button.active {
+    border-color: var(--primary-500);
+    background: var(--primary-700);
+    color: white;
+}
+
+.i4-output-toolbar span {
+    opacity: 0.7;
+    font-size: 0.9em;
+}
+
+#i4-output-image {
+    position: relative;
+    width: min(100%, 1024px);
+    max-height: 1024px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #000;
+}
+
+#i4-output-image img {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 1024px !important;
+    max-height: 1024px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    background: #000;
+}
+
+#i4-output-image .image-container {
+    width: 100% !important;
+    max-width: 1024px !important;
+    max-height: 1024px !important;
+    aspect-ratio: 1 / 1;
+    background: #000 !important;
+}
+
+#i4-output-image .image-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+/* Gradio restarts these effects whenever progress data changes. */
+#i4-output-image .wrap,
+#i4-output-image .wrap.generating {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+}
+
+#i4-output-image .progress-bar {
+    transition: width 120ms linear !important;
+}
+
+#i4-expanded-caption .wrap {
+    display: none !important;
+}
+
+#i4-import-layout {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0.8rem;
+}
+
+#i4-load-previous,
+#i4-clear-prompt {
+    flex: 0 0 3.25rem !important;
+    min-width: 3.25rem !important;
+}
+
+.i4-first-generation-note {
+    margin-top: 0.5rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--block-border-color);
+    border-radius: var(--block-radius);
+    background: var(--background-fill-secondary);
+    color: var(--body-text-color);
+    box-shadow: var(--block-shadow);
+}
+
+#i4-layout-json textarea::placeholder {
+    color: var(--input-placeholder-color) !important;
+    opacity: 0.8;
+}
+
+.i4-output-overlay {
+    display: none;
+    position: absolute;
+    z-index: 20;
+    overflow: hidden;
+    pointer-events: none;
+    box-sizing: border-box;
+    background: rgba(4, 12, 18, 0.38);
+}
+
+.i4-output-overlay.visible {
+    display: block;
+}
+
+.i4-output-grid {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(rgba(210, 235, 245, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(210, 235, 245, 0.12) 1px, transparent 1px);
+    background-size: 10% 10%;
+}
+
+.i4-output-box {
+    position: absolute;
+    box-sizing: border-box;
+    border: 2px solid rgba(220, 240, 248, 0.82);
+    box-shadow:
+        0 0 0 2px rgba(15, 25, 30, 0.48),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+    background: rgba(205, 230, 240, 0.08);
+}
+
+.i4-output-box.text {
+    border-color: rgba(255, 76, 105, 0.9);
+    background: rgba(255, 48, 79, 0.12);
+}
+
+.i4-output-box > span {
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    padding: 1px 3px;
+    color: #e8f8ff;
+    background: rgba(8, 18, 24, 0.72);
+    font: bold clamp(10px, 1.4vw, 18px) monospace;
+    line-height: 1.1;
+    text-shadow: 0 1px 2px #000;
+}
+
+@media (max-width: 900px) {
+    #i4-main-split {
+        flex-wrap: wrap !important;
+    }
+
+    #i4-left-pane,
+    #i4-right-pane {
+        flex: 1 1 100% !important;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    #i4-divider-slot {
+        display: none;
+    }
+
+    #i4-png-info-layout {
+        flex-wrap: wrap !important;
+    }
+
+    #i4-png-preview-column,
+    #i4-png-json-column {
+        flex: 1 1 100% !important;
+    }
+
+    .i4-builder-layout {
+        grid-template-columns: 1fr;
+    }
+}

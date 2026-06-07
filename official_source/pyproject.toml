@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ideogram-4"
+version = "0.1.0"
+description = "Inference code for the Ideogram 4 text-to-image model."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE.md" }
+authors = [{ name = "Ideogram" }]
+keywords = ["text-to-image", "diffusion", "flow-matching", "ideogram"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+  "torch>=2.11",
+  "transformers>=4.49.0",
+  "safetensors>=0.4.5",
+  "accelerate>=1.0.0",
+  "einops>=0.7.0",
+  "sentencepiece",
+  "pillow",
+  "huggingface_hub>=0.26.0",
+  "requests>=2.28",
+  "bitsandbytes>=0.49.2",
+]
+
+[tool.mypy]
+
+[[tool.mypy.overrides]]
+module = ["transformers.*", "huggingface_hub.*", "bitsandbytes.*", "requests.*"]
+ignore_missing_imports = true
+
+[tool.ruff]
+indent-width = 2
+extend-exclude = ["tmp"]
+
+[tool.ruff.format]
+indent-style = "space"
+
+[tool.ruff.lint.pycodestyle]
+# match the 2-space indent so E111/E117 don't fire
+max-line-length = 120
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ideogram4"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/ideogram4",
+  "src/ideogram4/magic_prompt_system_prompts/*.txt",
+  "run_inference.py",
+  "README.md",
+  "pyproject.toml",
+]
